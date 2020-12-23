@@ -1,0 +1,23 @@
+# Layers: 3
+# Topology (input - hidden - output)
+topology: 3 5 1 
+# Dummy update values; file saved from class OONNet
+set_update_f 1 0.3 1.0 9.5
+
+
+# Connection structure - format:
+# <unit_no> <act_id>
+# Weights <from_unit> <value>
+
+4 1
+1 -0.108697  2 0.0944057  3 -0.118429  0 0.0268551  
+5 1
+1 0.938449  2 -0.0614479  3 -0.861253  0 0.476913  
+6 1
+1 0.686042  2 -0.0784983  3 -0.51265  0 0.404713  
+7 1
+1 0.948097  2 0.0547648  3 -0.452245  0 0.64208  
+8 1
+1 -0.113568  2 -0.0780232  3 0.733851  0 -0.0757881  
+9 0
+4 5.70602  5 3.59201  6 -5.31809  7 3.72128  8 2.42581  0 -0.2073  

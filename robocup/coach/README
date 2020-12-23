@@ -1,0 +1,84 @@
+22/02/2002
+
+Introduction
+============
+
+This is the README file for SputCoach, the coach for the Karlsruhe 
+Brainstormers RoboCup team. It should help you to get started using 
+the coach. Refer to README.modules for information how to add your 
+own modules to the coach.
+
+Modules
+=======
+
+SputCoach has a modular structure, that makes it possible to add 
+additional functionality without changing the complete coach code. 
+Furthermore, different functionalities are separated and can be 
+worked on without interfering. And last but not least it is possible 
+to load only some selected modules, thus saving ressources and 
+calculation time. You don't need to load offline coach capabilties 
+when you are in a competition, do you?
+
+Adding new modules is easy, because there is a clear and simple 
+interface. Please refer to README.modules to get information how to 
+add you own module.
+
+For getting information on the available SputCoach modules, you 
+should check the README files in the modules/ directory.
+
+Usage
+=====
+All options may be specified in the config file, which is coach.conf 
+as default. Use '-conf filename' to specify a different file name. 
+Additionally, you may set some of the more important options on the 
+command line. Enter 'SputCoach -help' to view a list of the available 
+command line options. 
+
+Some options found in the config file are explained here:
+
+*** NOTE: The format of some of the options explained here is subject
+          to change in order to keep it consistent. Probably I will
+          introduce CamelCase for most of the options. 
+          Also, there will be some more options soon.
+
+-interactive: Set this to 1 if you want to enable the keyboard input
+      feature. This _must_ be 0 if you want to run the coach in the
+      background (e.g. when used in a startup script)! It also should
+      be 0 when used in a competition.
+
+-log_dir: Set the directory for putting logfiles. This should be the
+      same that you use for your agents.
+
+-log-lev: Specify the max log level that will be logged.
+
+-log_[def|err|vis|msg|fld|int]:
+      Set log options for each of the available log classes. The first
+      digit means stdin, the second stderr and the third means the
+      logging to a file. The log classes are:
+        
+        * def: misc stuff not matching into one of the other classes
+	* err: error messages and warnings
+        * vis: visualisation information (for showing in logplayer)
+        * msg: stuff belonging to messages and the parser
+        * fld: information concerning the field (or world model)
+        * int: coach intention information
+
+-LoadModules = <string>:
+      This string contains the names of all modules that should be
+      loaded, separated by commas. You always should load ModCore, 
+      since it contains core functionalities. Also, check possible
+      dependencies before disabling a module.
+
+Troubleshooting
+===============
+SputCoach (used as an online coach) needs to be started after at 
+least one normal player is already on the field. The soccer server 
+won't accept the connection if there are no players on the field. 
+Please note that you have to set the same team name for both 
+SputCoach and agents.
+
+ToDo
+====
+- Add offline coach capabilities
+- Create some useful modules ;-)
+- Write a better README

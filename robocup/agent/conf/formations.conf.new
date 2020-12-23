@@ -1,0 +1,246 @@
+[Definitions]
+# Dynamic Formation List
+# just add an entry by increasing number
+# for Formation-Morphing: 1 - Defence, 2 - Regular, 3 - Offence
+0=4-1-5-Defense
+#1=4-1-5-Midfield
+1=3-4-3-Midfield
+2=3-4-3-Midfield
+#2=3-4-3-Before-Goal
+#2=3-4-3
+3=4-1-5-Abschlag
+4=3-4-3-Before-Goal
+
+# Formation, wenn im Code nicht ueberschrieben
+Initial_Formation=1
+
+#Stretch gibt die Ausdehnung des Einheitsquadrats auf dem Spielfeld an
+#=Abseitslinie-Verteidigungslinie
+#Stretch=30.0
+Stretch=20.0
+
+# 0: Matching by Player Number
+# 1: Greedy Matching by Evaluation Function
+# 2: Divide by Two with Three Neighbours Matching
+# 3: Distributed Matching
+# 4: Moveup Matching
+Initial_Matching=0
+
+# 0: Kosten = Distanz
+# 1: Kosten = Distanz * Gewicht
+# 2: Kosten = Distanz * Ballabstand
+Initial_Evaluation=0
+
+# Ball Weight in between 0 and 1 (linear attraction!)
+# 0: ball has no weight
+# 1: ball has indefinite weight
+Ball_Weight_X_Defense=0.0
+Ball_Weight_Y_Defense=0.2
+Ball_Weight_X_Buildup=0.0
+Ball_Weight_Y_Buildup=0.0
+Ball_Weight_X_Attack=0.0
+Ball_Weight_Y_Attack=0.0
+
+# neues (defensives) Gamestate-wechseln an(1) oder aus (0)
+use_BS02_gamestates=1
+
+# wenn die offence_line > before_goal_line und der game_state==gsATTACK, dann wird formation 4 benutzt
+before_goal_line = 25.0
+
+#gibt das maximale Niveau der Verteisigungslinie an (default -5.0)
+max_defense_line = -5.0
+
+#gibt den mindestabstand der Verteidigungslinie von der eigenen Torlinie an (default 10.0)
+min_defense_line_offset = 10
+
+#gibt an, wie weit die Verteidigungslinie mindistens hinter der Balllinie sein soll (default 5.0)
+#defense_line_ball_offset = 10
+#defense_line_ball_offset = 7.5
+defense_line_ball_offset = 5.0
+
+#gibt an, ab welcher Ballposition die defense_line an den Strafraum zurueckgesetzt werden soll
+move_defense_line_to_penalty_area = -50.0
+
+#Sollen Formationen mit Hysteresen-Prinzip geswitched werden?
+# 1 andis hysterese
+# 0 davids game_state automat
+Switch_Hysterese = 0
+
+#Stamina-Management
+[Stamina]
+#stamina_management_type = 0  
+stamina_management_type = 1
+
+# Parameters for management_type 0 only:
+stamina_for_defence =    0 100 1500  30
+stamina_for_middle  = 2000  50 2000  70
+stamina_for_offence = 2500  40 1500 100
+
+
+# Parameters for management_type 1 only:
+stamina_reserve_defenders= 1000;
+stamina_reserve_midfielders= 500;
+stamina_reserve_attackers= 500;
+
+#Hyterese
+[Hysterese]
+
+# 0: Ballorientiert mit Regeln (s. unten)
+# 1: customized (z.B. mit gegnerischen Spielern, etc.) Method
+Initial_Hysterese = 0
+
+# wenn ballorientiert, dann definiere ein Set von Rechtecken mit zugehörigen Formationen
+# z.B. fuer Angriffsformation muss sich der Ball in der gegnerischen Haelfte befinden
+# es werden die Formationsnummern aus dem Definitionsteil verwendet
+# Rechteck angeben mit x1 y1 x2 y2 (untere linke Ecke, obere rechte Ecke / x1 < x2, y1 < y2)
+Rechteck_fuer_Formation_0 = -52.5 -34.0  -10.0 34.0
+Rechteck_fuer_Formation_1 =  -25.0 -34.0 30.0 34.0
+Rechteck_fuer_Formation_2 =  0.0 -34.0 52.5 34.0
+
+#Formationen: x y Rolle
+#Rolle: 0 - Defence, 1 - Middlefield, 2 - Offence
+
+[3-3-4]
+pos_1 = 0.0 0.25 0
+pos_2 = 0.0 0.5  0
+pos_3 = 0.0 0.75 0
+pos_4 = 0.5 0.25 1
+pos_5 = 0.5 0.5  1
+pos_6 = 0.5 0.75 1
+pos_7 = 1.0 0.8  2
+pos_8 = 1.0 0.2  2
+pos_9 = 1.0 0.4  2
+pos_10= 1.0 0.6  2
+
+[3-4-3]
+pos_1 = 0.0 0.25 0
+pos_2 = 0.0 0.5  0
+pos_3 = 0.0 0.75 0
+pos_4 = 0.5 0.2  1
+pos_5 = 0.5 0.4  1
+pos_6 = 0.5 0.6  1
+pos_7 = 0.5 0.8  1
+pos_8 = 1.0 0.25 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.75 2
+
+[3-4-3-Midfield]
+pos_1 = 0.5 0.2 1
+pos_2 = 0.0 0.5  0
+pos_3 = 0.5 0.8 1
+pos_4 = 0.5 0.4  1
+pos_5 = 0.0 0.3  0
+pos_6 = 0.0 0.7  0
+pos_7 = 0.5 0.6  1
+#pos_8 = 1.0 0.25 2
+#pos_9 = 1.0 0.5  2
+#pos_10= 1.0 0.75 2
+pos_8 = 1.0 0.12 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.88 2
+
+[5-2-3]
+#pos_1 = 0.0 0.3  0
+pos_1 = 0.0 0.35  0
+pos_2 = 0.0 0.5  0
+#pos_3 = 0.0 0.7  0
+pos_3 = 0.0 0.65  0
+pos_4 = 0.6 0.3 1
+#pos_5 = 0.2 0.38  0
+#pos_6 = 0.2 0.62  0
+pos_5 = 0.15 0.4  0
+pos_6 = 0.15 0.6  0
+pos_7 = 0.6 0.7  1
+pos_8 = 1.0 0.25 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.75 2
+
+
+[4-3-3]
+pos_1 = 0.0 0.2  0
+pos_2 = 0.0 0.4  0
+pos_3 = 0.0 0.6  0
+pos_4 = 0.0 0.8  0
+pos_5 = 0.5 0.25 1 
+pos_6 = 0.5 0.5  1
+pos_7 = 0.5 0.75 1
+pos_8 = 1.0 0.25 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.75 2
+
+[4-1-5-Defense]
+pos_1 = 0.0 0.25 0
+pos_2 = 0.2 0.5 0
+pos_3 = 0.0 0.75 0
+pos_4 = 0.5 0.3 1
+pos_5 = 0.0 0.42 0
+pos_6 = 0.0 0.58 0
+pos_7 = 0.5 0.7 1
+pos_8 = 1.0 0.12 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.88 2
+
+
+[4-1-5-Midfield]
+pos_1 = 0.0 0.25 0
+pos_2 = 0.3 0.5 0
+pos_3 = 0.0 0.75 0
+pos_4 = 0.6 0.3 1
+pos_5 = 0.0 0.42 0
+pos_6 = 0.0 0.58 0
+pos_7 = 0.6 0.7 1
+pos_8 = 1.0 0.25 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.75 2
+
+[4-1-5-Abschlag]
+pos_1 = 0.5 0.2 1
+pos_2 = 0.0 0.5  0
+pos_3 = 0.5 0.8 1
+pos_4 = 0.5 0.4  1
+pos_5 = 0.0 0.3  0
+pos_6 = 0.0 0.7  0
+pos_7 = 0.5 0.6  1
+#pos_1 = 0.3 0.2  0
+#pos_2 = 0.0 0.5  0
+#pos_3 = 0.3 0.8  0
+#pos_4 = 0.4 0.38 1
+#pos_5 = 0.0 0.18  0
+#pos_6 = 0.0 0.82  0
+#pos_7 = 0.4 0.62 1
+pos_8 = 1.0 0.3 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.8 2
+
+[3-4-3-Before-Goal]
+pos_1 = 0.5 0.2 1
+pos_2 = 0.0 0.5  0
+pos_3 = 0.5 0.8 1
+pos_4 = 0.5 0.4  1
+pos_5 = 0.0 0.3  0
+pos_6 = 0.0 0.7  0
+pos_7 = 0.5 0.6  1
+pos_8 = 1.0 0.4 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.6 2
+
+
+
+[Abschlag]
+pos_1 = 0.0 0.18  0
+pos_2 = 0.0 0.5  0
+pos_3 = 0.0 0.82  0
+pos_4 = 0.7 0.0  1
+pos_5 = 0.4 0.38 1
+pos_6 = 0.4 0.62 1
+pos_7 = 0.7 1.0  1
+pos_8 = 1.0 0.3 2
+pos_9 = 1.0 0.5  2
+pos_10= 1.0 0.8 2
+
+#pos_5 = 0.7 0.38 0
+#pos_6 = 0.7 0.62 0
+
+[Role]
+
+#empty

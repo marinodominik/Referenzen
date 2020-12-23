@@ -1,0 +1,64 @@
+\usepackage{selinput}
+\usepackage[ngerman,english]{babel} % Standard: English
+\usepackage{graphicx}
+\usepackage{varioref}
+
+\usepackage{color}
+\definecolor{lightgray}{gray}{0.95}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For including Java-sources %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+\lstset{
+   language=Java,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   frame=leftline,
+   numbers=left,
+   numberstyle=\tiny, % or e.g. \footnotesize
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b,
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definitions for signatures %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\TwoSignatures}[2]{%
+\vspace{1.2cm}
+\noindent\begin{tabular}{ll}%
+\makebox[6.8cm]{\hrulefill} & \makebox[6.8cm]{\hrulefill}\\
+#1 & #2
+\end{tabular}
+
+}
+\newcommand*{\ThreeSignatures}[3]{%
+\vspace{1.2cm}
+\noindent\begin{tabular}{lll}%
+\makebox[4.4cm]{\hrulefill} & \makebox[4.4cm]{\hrulefill} & \makebox[4.4cm]{\hrulefill}\\
+#1 & #2 & #3
+\end{tabular}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For cites and bibliography %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[babel,german=guillemets]{csquotes}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}

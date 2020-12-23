@@ -1,0 +1,25 @@
+#!/bin/bash
+
+BASEDIR=`pwd`
+RAMDISKPATH=`cat $BASEDIR/ramDiskPath`
+
+if [ -d $RAMDISKPATH ]
+then
+	TESTSTRING=`date`
+
+	echo $TESTSTRING > $RAMDISKPATH/isActiveTestFile
+
+	if [ -f $RAMDISKPATH/isActiveTestFile ]
+	then
+		if [ "`cat $RAMDISKPATH/isActiveTestFile`"="$TESTSTRING" ]
+		then
+			exit 0
+		else
+			exit 3
+		fi
+	else
+		exit 2
+	fi
+else
+	exit 1
+fi

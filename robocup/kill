@@ -1,0 +1,12 @@
+#!/bin/sh
+
+AGENT=FRA-UNIted_Agent
+COACH=FRA-UNIted_Coach
+
+killall -TERM $AGENT
+killall -TERM $COACH
+
+sleep 2
+
+killall -KILL $AGENT
+killall -KILL $COACH

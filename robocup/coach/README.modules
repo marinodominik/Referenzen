@@ -1,0 +1,52 @@
+22/02/2002
+
+Introduction
+============
+
+This README should give you a short overview on how to create your own
+modules.
+
+Getting Started
+===============
+
+Adding a new module is really easy. Just copy the template module files
+mod_template.c and mod_template.h and edit them to suit your needs. The
+comments in those files should be pretty self-explanatory...
+After you have your new module files, say mod_example.[ch], you only need to
+edit mod_defs.h to make your modules known to SputCoach. Simply add an
+#include directive for your header file and a single line to the getModule()
+function. 
+
+After that, you should edit coach.conf (or whatever your config
+file is) and add a section for your module. Also, if you want to have your
+module loaded by the coach, you must add the name of your module to the
+'LoadModule' line.
+
+That's it, you are done! Now it's time to give your module some useful
+code... ;-)
+
+Guidelines
+==========
+
+Your module should suit some guidelines to prevent interence with other
+modules and to keep all the code nice and clean. First of all, your module
+files should reside in the subdirectory modules/. The name of your module
+class should look like 'ModExample'. This is also the name you should put
+into the modName string. Remember that your module will be identified by
+that string, so this is the same that you will use in the config file...
+
+Speaking of the config file: Of course your module should not interfere with
+other modules, although some config file or command line options have the
+same names. To prevent conflicts, create a section called [ModExample] in
+the config file and put your options there. If you read parameters from the
+command line, add the prefix -ModExample_ to them. Valueparser can automate
+this - refer to its documentation to learn how.
+
+Your module should not use the class constructor or destructor. The
+framework does not guarantee that all of the environment has already been
+established when your module will be created. It does guarantee, though,
+that the connection to the server is alive and working, that the global data
+structures are properly initialised and (if waitForTeam is set) that all
+your players are already on the field when ModExample::init() will be
+called. Same goes for ModExample::destroy() that should be used instead of
+the destructor.

@@ -1,0 +1,5 @@
+
+g++ -g3 -I. -I../../lib/src  -c EpisodeProcessingNeuralNetworkTrainer.c
+
+g++ EpisodeProcessingNeuralNetworkTrainer.o -L../../lib/bin -lbs -o EpisodeProcessingNeuralNetworkTrainer
+

@@ -1,0 +1,24 @@
+body{
+    margin:0;
+}
+
+.seperator{
+    background-color: orangered;
+    height: 20vh;
+    padding-top: 7vh;
+}
+.seperator h1{
+    font-family: sans-serif;
+    font-size: 6vh;
+    margin:auto;
+    text-align: center;
+    color: white;
+}
+
+.search-container{
+    height:60vh;
+}
+
+.search-form{
+    margin-top:25vh;
+}

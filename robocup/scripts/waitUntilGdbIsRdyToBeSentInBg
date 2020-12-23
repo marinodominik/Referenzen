@@ -1,0 +1,19 @@
+#!/bin/bash
+
+SLEEP=`which sleep`
+
+if [ "$SLEEP" != "" ]; then
+  SLEEP="$SLEEP $1"
+else
+  echo "WARNING: No sleep found on this system! Debug mechanism may not run correctly!"
+  echo "WARNING: No sleep found on this system! Debug mechanism may not run correctly!"
+  echo "WARNING: No sleep found on this system! Debug mechanism may not run correctly!"
+fi
+
+$SLEEP
+
+PID_GDB=`pgrep gdb`
+#PID_AGENT=`pgrep -n FRA-UNIted_Agen`
+
+#kill -20 $PID_AGENT
+kill -20 $PID_GDB

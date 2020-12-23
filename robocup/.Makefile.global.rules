@@ -1,0 +1,51 @@
+$(ACTOBJDIR)/%.d: $(ACTSRCDIR)/%.cpp
+ifeq ($(PLAIN_MODE),1)
+	$(SHELL) -ec 'printf "%s %s" $(ACTOBJDIR)/$*.o $(ACTOBJDIR)/ && $(CXX) -MM $(CXXFLAGS) $(CXXINCLUDE) $< | sed "s/$*.o/$*.d/" ' > $@ ;
+else
+	@$(SHELL) -ec 'printf "%s %s" $(ACTOBJDIR)/$*.o $(ACTOBJDIR)/ && $(CXX) -MM $(CXXFLAGS) $(CXXINCLUDE) $< | sed "s/$*.o/$*.d/" ' > $@ ;
+endif
+
+-include $(OBJS:.o=.d)
+
+$(ACTOBJDIR)/%.o : $(ACTSRCDIR)/%.cpp $(ACTOBJDIR)/%.d
+ifeq ($(PLAIN_MODE),1)
+	$(CXX) -c  $(CXXFLAGS) $(CXXINCLUDE) $< -o $@
+else
+	$(PRINT_COMPILETARGET)
+	@$(CXX) -c  $(CXXFLAGS) $(CXXINCLUDE) $< -o $@
+	$(PRINT_COMPILETARGETDONE)
+endif
+
+
+debugable: PREPARE_DEBUG_FLAGS $(ASSEMBLY_DIR)$(ASSEMBLY_NAME)
+
+PREPARE_DEBUG_FLAGS:
+	$(eval CXXFLAGS = $(CXXFLAGS) $(CXXDEBUGFLAGS))
+
+
+MAKE_SUBDIRECTORYS:
+	$(MAKE_SUBDIRECTORYS)
+
+
+PRINT_ENTER_DIRECTORY:
+	$(PRINT_ENTER_DIRECTORY)
+
+PRINT_GENERATE_LIB:
+	$(PRINT_LIBGENERATE)
+
+PRINT_GENERATE_AGENT:
+	$(PRINT_AGENTGENERATE)
+
+PRINT_GENERATE_COACH:
+	$(PRINT_COACHGENERATE)
+
+
+clean:
+	@find $(ACTOBJDIR) -name '*.[oad]' -exec rm {} \;
+
+	@find $(ACTBINDIR) -name 'FRA-UNIted_Agent' -exec rm {} \;
+	@find $(ACTBINDIR) -name 'FRA-UNIted_Coach' -exec rm {} \;
+
+	@find $(ROOTDIR) -name 'cscope.out' -exec rm {} \;
+
+	$(PRINT_CLEAN)

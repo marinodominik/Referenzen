@@ -1,0 +1,12 @@
+#!/bin/bash
+
+BASEDIR=`pwd`
+RAMDISKPATH=`cat $BASEDIR/ramDiskPath`
+
+sudo mkdir $RAMDISKPATH
+user=`whoami`
+userid=`id -u $user`
+groupid=`id -g $user`
+sudo mount -o umask=700,gid=$groupid,uid=$userid -t ramfs ramfs $RAMDISKPATH
+sudo chown $user:`getent group $groupid | cut -d: -f1` $RAMDISKPATH
+sudo chmod 744 $RAMDISKPATH

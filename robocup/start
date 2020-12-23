@@ -1,0 +1,31 @@
+#!/bin/bash
+
+HOST=$1
+BASEDIR=$2
+NUM=$3
+
+AGENTDIR=agent/bin
+AGENT=FRA-UNIted_Agent
+AGENTOPT="-wm_test 1 -log_lev 4 -log_dir /tmp -log_deb 001 -log_def 001 -log_wm 001 -log_mdp 000 -log_err 101 -host $HOST"
+
+COACHDIR=coach/bin
+COACH=FRA-UNIted_Coach
+COACHOPT="-server_9.4 0 -host $HOST"
+
+cd ${BASEDIR}
+
+case $NUM in
+    1)
+	cd $AGENTDIR
+        ./$AGENT -goalie $AGENTOPT
+        ;;
+    12)
+	cd $COACHDIR
+        ./$COACH $COACHOPT
+        ;;
+    *)
+	cd $AGENTDIR
+        ./$AGENT $AGENTOPT
+        ;;
+esac
+

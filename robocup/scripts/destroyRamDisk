@@ -1,0 +1,7 @@
+#!/bin/bash
+
+BASEDIR=`pwd`
+RAMDISKPATH=`cat $BASEDIR/ramDiskPath`
+
+sudo umount $RAMDISKPATH
+sudo rmdir $RAMDISKPATH

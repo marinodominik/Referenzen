@@ -1,0 +1,70 @@
+#!/bin/bash
+SHELL:=/bin/bash
+
+#-------------------------------------------------------------------------------
+# Basic path stuff
+#-------------------------------------------------------------------------------
+
+BASEDIR=$(shell echo `pwd`)
+
+ROOTDIRNAME=robocup
+ROOTDIR=$(shell echo ${BASEDIR} | sed 's/${ROOTDIRNAME}.*//')${ROOTDIRNAME}
+
+#--- ACTDIR (full path) --------------------------------------------------------
+ACTDIR=$(BASEDIR)
+#--- ACTDIRRELATIVE from ROOTDIR -----------------------------------------------
+ACTDIRRELATIVE=$(shell echo $(BASEDIR) | sed 's/.*$(shell echo $(ROOTDIRNAME))/$(shell echo $(ROOTDIRNAME))/')
+#--- ACTDIRNAME (only the name of the directory) -------------------------------
+ACTDIRNAME=$(shell echo $(BASEDIR) | sed 's/.*\///')
+
+#-------------------------------------------------------------------------------
+# Project related path stuff
+#-------------------------------------------------------------------------------
+
+AGENTDIRNAME=agent
+COACHDIRNAME=coach
+LIBDIRNAME=lib
+
+AGENTDIR=$(ROOTDIR)/$(AGENTDIRNAME)
+COACHDIR=$(ROOTDIR)/$(COACHDIRNAME)
+LIBDIR=$(ROOTDIR)/$(LIBDIRNAME)
+
+SRCDIRNAME=src
+OBJDIRNAME=obj
+BINDIRNAME=bin
+
+ACTSRCDIR=$(ACTDIR)
+ACTOBJDIR=$(shell echo $(ACTSRCDIR) | sed "s/\(.*\)$(SRCDIRNAME)/\1$(OBJDIRNAME)/")
+#ACTBINDIR=$(shell echo $(ACTSRCDIR) | sed "s/\(.*\)$(SRCDIRNAME)/\1$(BINDIRNAME)/" | sed "s/$(BINDIRNAME).*/$(BINDIRNAME)\//")
+ACTBINDIR=$(shell echo $(ACTSRCDIR) | sed "s/\(.*\)$(SRCDIRNAME)/\1$(BINDIRNAME)/")
+
+#-------------------------------------------------------------------------------
+# Basic make vars
+#-------------------------------------------------------------------------------
+
+CXX           = g++
+#CXXFLAGS      = -Wall -O3 -g3 -pg
+#CXXFLAGS      = -O3 -g3 -pg
+CXXFLAGS      = -Wall -Wpedantic -O2 -pg -pipe -fno-stack-protector
+CXXDEBUGFLAGS = -g3 -Wall #-Wextra -Wpedantic -Werror -Wno-error=vla -Wno-error=unused-parameter
+
+# Warning-Options: https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#Warning-Options
+
+SRCS          = $(wildcard $(ACTSRCDIR)/*.cpp)
+OBJS          = $(patsubst $(ACTSRCDIR)/%.cpp, $(ACTOBJDIR)/%.o, $(SRCS))
+
+
+#-------------------------------------------------------------------------------
+# Crazy stuff
+#-------------------------------------------------------------------------------
+
+PLAIN_MODE = 0
+
+ifeq ($(PLAIN_MODE), 0)
+MAKE_SUBDIRECTORYS=@for DIR in $(shell find * -prune -type d | while read d; do if [ -f $$d/Makefile ] ; then echo "$$d" ; fi ; done ; ) ; do $(MAKE) -s -C $$DIR $(MAKECMDGOALS) || exit ; done
+else
+MAKE_SUBDIRECTORYS=@for DIR in $(shell find * -prune -type d | while read d; do if [ -f $$d/Makefile ] ; then echo "$$d" ; fi ; done ; ) ; do $(MAKE) -C $$DIR $(MAKECMDGOALS) || exit ; done
+endif
+
+
+include $(ROOTDIR)/.Makefile.global.variables.pretty_print_vars

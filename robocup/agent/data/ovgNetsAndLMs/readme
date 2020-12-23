@@ -1,0 +1,83 @@
+WARNING:
+found a bug, which I can't easily remove.
+If you choose appType: 2, but load a latticemap (appInitFN) and probably
+also if you load something completely different. The player will crush without
+any message. (n++ doesn't give a message). So make sure that appInitFN really is
+the filename of a fitting network.
+
+The parameters for the two learned approximators:
+lmTd0Gree10xx60000.lmp  
+######################################################################
+# This file was created by the following run of policy_one_vs_goalie2
+# use_handicap_goalshot_test 1
+# handicap: 2.000000
+# safety_handicap_sub: 1.000000
+# risky_dis_to_pole_5: 0.800000
+# risky_dis_to_pole_30: 1.900000
+# reconsider_goalshot: 1
+# wait_and_see_patience: 100
+# wait_and_see_clearanceline: 15.000000
+# kickrush_param: 1.000000
+# flank_param: 0.100000
+# use_handicap_selfpasses: 1
+# selfpasses_handicap: 2.000000
+# selfpasses_safety_level: 3.000000
+# selfpasses_SHORT_safety_level: 3.000000
+# selfpasses_SHORT_max_speed: 0.710000
+# use_goalshot: 1
+# appType: 0
+# reprType: 0
+# appInitFN: /home/deisen/fappTest/initLMPovg8angKlein.lmp
+# saveFNTrunc: /home/deisen/robocup/learn1gg1/uni/vFeldMelbourneGoalie8dim/LM/td0Gree10akt140/xx
+# learnRate: 0.300000
+# randomEvery: 10
+# trainEveryTraj: -1
+# trajAmount: 8000
+# updateMode: 0
+# nrOfIterations: 1
+# saveEvery: 30000
+# printPatterns: 0
+# printLearn: 0
+# evalEvery: 500
+# evalAmount: 50
+# kickActionParams: {dir: (-3.1, 2.8, 20), strength: (0.4, 1.0, 7)}
+# Boltz-T: 0.100000
+######################################################################
+
+rpropTd1Gree10Iter30xx1000.net 
+######################################################################
+# This file was created by the following run of policy_one_vs_goalie2
+# use_handicap_goalshot_test 1
+# handicap: 2.000000
+# safety_handicap_sub: 1.000000
+# risky_dis_to_pole_5: 0.800000
+# risky_dis_to_pole_30: 1.900000
+# reconsider_goalshot: 1
+# wait_and_see_patience: 100
+# wait_and_see_clearanceline: 15.000000
+# kickrush_param: 1.000000
+# flank_param: 0.100000
+# use_handicap_selfpasses: 1
+# selfpasses_handicap: 2.000000
+# selfpasses_safety_level: 3.000000
+# selfpasses_SHORT_safety_level: 3.000000
+# selfpasses_SHORT_max_speed: 0.710000
+# use_goalshot: 1
+# appType: 2
+# reprType: 0
+# appInitFN: /home/deisen/fappTest/npp_initNet8_20_1Scaled.net
+# saveFNTrunc: /home/deisen/robocup/learn1gg1/uni/vFeldMelbourneGoalie8dim/RPROP/td1Gree10Iter30/xx
+# learnRate: 0.200000
+# randomEvery: 10
+# trainEveryTraj: 300
+# trajAmount: 10000
+# updateMode: 1
+# nrOfIterations: 30
+# saveEvery: 20
+# printPatterns: 0
+# printLearn: 1
+# evalEvery: 500
+# evalAmount: 50
+# kickActionParams: {dir: (-3.1, 2.8, 20), strength: (0.4, 1.0, 7)}
+# Boltz-T: 0.100000
+######################################################################
