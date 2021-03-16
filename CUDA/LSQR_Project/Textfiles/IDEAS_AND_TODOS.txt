@@ -1,0 +1,37 @@
+- Fragen an professor:
+    -> bekommen wir eine Matrix A und Vector b mit lambda gegeben, die zu groß ist für gccg201 
+    -> wie bekommen wir eine note (mit präsentation oder nur die abgabe) 
+    -> wie sollen wir es paralellisieren, (reicht cuBlas) oder sollen wir auch eigene kernels programmieren, die eventuell langsamer sind als cuBlas
+    -> reicht es, wenn wir eigene kernels (mit shared memory) vs. cublas vs. CPU implementation vergleichen und wissenschaftlich prüfen
+    -> memory --> gemeint Ram oder GPU memory
+    -> kann die A Matrix in den Ram geladen werden??
+    -> sollen wir die zu große matrix A auf meherer GPUs verteilen, gccg201 hat 8x GPUs eingebaut
+    -> für paralellisierung haben wir nur matrix * vector, Vector + Vector, norm(Vector) und Matrix transponieren
+    -> für was Cusparse?? bekommen wir eine Matrix A wo die meisten zellen Null sind
+
+
+
+TODOS:
+	-> cuSPARSE SPMW --> csr format     check
+    -> erstelle 100x100 matrix und vector
+    -> write kernels for:
+        - matrix, vector operation
+        - norm
+        - add/subtract two vectors 
+        - scalar with vector 
+        - lsqr comapre - return the required vector
+    -> calculate times for  
+        - cpu calculation
+        - cuBlas without csr
+        - cuBlas with csr
+        - everything with kernels and shared memory (or something else) ?? 
+    ->cuSPARSE:
+        create A_T somehow
+        connect with kernels check
+        solve issues with desc_t
+    -> max_iters in main einfügen
+
+Presentation
+    What we have learned 
+        -> memory conflicts multiplication kernel??
+        -> shared memory every entry have to be zero --> error

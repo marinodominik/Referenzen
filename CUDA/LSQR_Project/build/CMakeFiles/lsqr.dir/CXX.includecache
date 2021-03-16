@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/gris/gris-f/homelv/dmarino/PMPP_Project/lsqr.h
+
+/gris/gris-f/homelv/dmarino/PMPP_Project/main.cc
+iostream
+-
+cstdlib
+-
+lsqr.h
+/gris/gris-f/homelv/dmarino/PMPP_Project/lsqr.h
+
