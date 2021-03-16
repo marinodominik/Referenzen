@@ -1,1 +1,0 @@
-/usr/bin/c++   -fopenmp -O3 -DNDEBUG  -rdynamic CMakeFiles/lsqr.dir/main.cc.o  -o lsqr /usr/local/cuda/lib64/libcudart_static.a -lpthread -ldl -lrt 

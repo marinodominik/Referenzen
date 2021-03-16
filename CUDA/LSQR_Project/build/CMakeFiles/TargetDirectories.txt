@@ -1,3 +1,0 @@
-/gris/gris-f/homelv/dmarino/PMPP_Project/build/CMakeFiles/rebuild_cache.dir
-/gris/gris-f/homelv/dmarino/PMPP_Project/build/CMakeFiles/lsqr.dir
-/gris/gris-f/homelv/dmarino/PMPP_Project/build/CMakeFiles/edit_cache.dir
